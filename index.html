@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONSULIBROS - Libros Digitales de Educación Primaria</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #0f172a;
+        }
+        .font-brand {
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+        .btn-course {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-course.active {
+            background-color: #2563eb;
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-subject {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-subject.active-medio {
+            background-color: #059669;
+            color: white;
+            border-color: #059669;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+        .btn-subject.active-lengua {
+            background-color: #d97706;
+            color: white;
+            border-color: #d97706;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+        }
+        .btn-subject.active-mates {
+            background-color: #dc2626;
+            color: white;
+            border-color: #dc2626;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Contenedor adaptativo del visor para incrustación directa */
+        .visor-container {
+            position: relative;
+            width: 100%;
+            height: 75vh;
+            min-height: 600px;
+            background-color: #f8fafc;
+        }
+        .visor-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center text-slate-800 p-2 sm:p-4">
+
+    <!-- PANTALLA INICIAL (PORTADA) -->
+    <div id="pantalla-inicial" class="w-full max-w-4xl mx-auto my-auto flex flex-col items-center justify-center transition-all duration-500">
+        <div class="w-full bg-gradient-to-b from-[#1a237e] via-[#101442] to-[#0a0d2c] rounded-3xl p-6 sm:p-12 text-center text-white border-[6px] border-[#6366f1] shadow-2xl relative overflow-hidden">
+            
+            <!-- Título Principal -->
+            <h1 class="font-brand text-5xl sm:text-7xl font-extrabold tracking-wide text-[#ffea00] drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)] mb-4">
+                CONSULIBROS
+            </h1>
+
+            <!-- Subtítulo con Marco -->
+            <div class="inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/20 mb-8 shadow-inner">
+                <i class="fa-solid fa-graduation-cap text-[#ffea00] text-xl sm:text-2xl"></i>
+                <span class="text-xs sm:text-base font-extrabold uppercase tracking-widest text-slate-100">
+                    OPOSICIONES DE EDUCACIÓN PRIMARIA
+                </span>
+            </div>
+
+            <!-- 3 Iconos de Asignaturas -->
+            <div class="flex justify-center items-center gap-6 sm:gap-12 my-6">
+                <!-- Conocimiento -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#1e4d58]/80 border-2 border-[#38bdf8] flex items-center justify-center text-[#38bdf8] text-2xl sm:text-3xl shadow-lg">
+                        <i class="fa-solid fa-tree"></i>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold mt-2 text-slate-200">Conocimiento</span>
+                </div>
+
+                <!-- Lengua -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#5c4322]/80 border-2 border-[#fbbf24] flex items-center justify-center text-[#fbbf24] text-2xl sm:text-3xl shadow-lg">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold mt-2 text-slate-200">Lengua</span>
+                </div>
+
+                <!-- Matemáticas -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#5c223a]/80 border-2 border-[#f43f5e] flex items-center justify-center text-[#f43f5e] text-2xl sm:text-3xl shadow-lg">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <span class="text-xs sm:text-sm font-semibold mt-2 text-slate-200">Matemáticas</span>
+                </div>
+            </div>
+
+            <!-- TEXTO EXPLICATIVO -->
+            <div class="max-w-2xl mx-auto my-6 px-4 py-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 text-xs sm:text-sm leading-relaxed text-slate-200 text-center shadow-inner">
+                En esta aplicación encontrarás los libros de una editorial para todos los cursos de educación primaria te servirá como inspiración para la realización de tareas y actividades. Además sirve de orientación para conocer los aprendizajes de cada curso de educación primaria aunque sean secuenciados por la editorial. Recuerda que todas las editoriales están sujetas a la normativa curricular andaluza.
+            </div>
+
+            <!-- BOTÓN DE COMENZAR -->
+            <div class="mt-6 mb-6">
+                <button onclick="comenzarAplicacion()" class="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-slate-900 font-brand text-xl sm:text-2xl font-bold py-3.5 px-10 sm:px-14 rounded-full shadow-[0_0_25px_rgba(251,191,36,0.6)] transform hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border-2 border-yellow-200">
+                    <span>COMENZAR</span>
+                    <i class="fa-solid fa-circle-play text-2xl group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+
+            <!-- Divisor -->
+            <div class="w-full h-[1px] bg-white/10 my-6"></div>
+
+            <!-- Firma Autor -->
+            <div class="text-xs sm:text-sm font-medium text-slate-300">
+                Elaborado por <span class="text-white font-bold tracking-wide">Carlos Garrido</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA PRINCIPAL DE CONSULTA -->
+    <div id="pantalla-aplicacion" class="w-full max-w-6xl mx-auto hidden flex-col gap-3 transition-all duration-500 min-h-screen">
+        
+        <!-- Header de la Aplicación -->
+        <header class="bg-slate-800 rounded-2xl p-3 text-white flex flex-wrap items-center justify-between gap-3 shadow-lg border border-slate-700">
+            <div class="flex items-center gap-3">
+                <h2 class="font-brand text-xl md:text-2xl font-bold text-yellow-400">CONSULIBROS</h2>
+                <span class="hidden sm:inline-block text-xs bg-slate-700 text-slate-300 px-3 py-1 rounded-full border border-slate-600">Oposiciones Educación Primaria</span>
+            </div>
+            <button onclick="volverAInicio()" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-4 py-2 rounded-xl flex items-center gap-2 transition shadow">
+                <i class="fa-solid fa-house"></i>
+                <span>Volver a Inicio</span>
+            </button>
+        </header>
+
+        <!-- SELECTOR DE CURSOS (1º a 6º) -->
+        <section class="bg-white rounded-2xl p-3 shadow-md border border-slate-200">
+            <h2 class="text-[11px] uppercase tracking-wider font-bold text-slate-500 mb-1.5 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-blue-600"></i> Selecciona el Curso:
+            </h2>
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                <button onclick="seleccionarCurso(1)" id="btn-curso-1" class="btn-course py-2 px-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300/60">
+                    1º Primaria
+                </button>
+                <button onclick="seleccionarCurso(2)" id="btn-curso-2" class="btn-course py-2 px-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300/60">
+                    2º Primaria
+                </button>
+                <button onclick="seleccionarCurso(3)" id="btn-curso-3" class="btn-course py-2 px-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300/60">
+                    3º Primaria
+                </button>
+                <button onclick="seleccionarCurso(4)" id="btn-curso-4" class="btn-course py-2 px-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300/60">
+                    4º Primaria
+                </button>
+                <button onclick="seleccionarCurso(5)" id="btn-curso-5" class="btn-course py-2 px-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300/60">
+                    5º Primaria
+                </button>
+                <button onclick="seleccionarCurso(6)" id="btn-curso-6" class="btn-course py-2 px-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300/60">
+                    6º Primaria
+                </button>
+            </div>
+        </section>
+
+        <!-- SELECTOR DE ASIGNATURAS -->
+        <section class="bg-white rounded-2xl p-3 shadow-md border border-slate-200">
+            <h2 class="text-[11px] uppercase tracking-wider font-bold text-slate-500 mb-1.5 flex items-center gap-2">
+                <i class="fa-solid fa-book text-blue-600"></i> Selecciona la Asignatura:
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <button onclick="seleccionarAsignatura('medio')" id="btn-medio" class="btn-subject py-2 px-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border-2 border-emerald-200 hover:bg-emerald-50 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-tree text-emerald-600"></i>
+                    Conocimiento del Medio
+                </button>
+                <button onclick="seleccionarAsignatura('lengua')" id="btn-lengua" class="btn-subject py-2 px-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border-2 border-amber-200 hover:bg-amber-50 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-pen-nib text-amber-600"></i>
+                    Lengua Castellana
+                </button>
+                <button onclick="seleccionarAsignatura('mates')" id="btn-mates" class="btn-subject py-2 px-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border-2 border-rose-200 hover:bg-rose-50 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calculator text-rose-600"></i>
+                    Matemáticas
+                </button>
+            </div>
+        </section>
+
+        <!-- VISOR DE PDF INCRUSTADO DENTRO DE LA APLICACIÓN -->
+        <section class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden flex flex-col flex-1 mb-4">
+            <!-- Barra superior del Visor -->
+            <div class="bg-slate-800 text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-slate-700">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-red-400 text-lg"></i>
+                    <span id="titulo-libro" class="font-bold text-xs sm:text-sm">Conocimiento del Medio 1º</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a id="btn-abrir-nueva-pestana" href="#" target="_blank" class="text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition font-semibold">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>Abrir en pestaña nueva</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contenedor iframe principal -->
+            <div class="visor-container">
+                <iframe id="visor-pdf" class="visor-iframe" src="about:blank" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- FOOTER SIMPLE -->
+        <footer class="pb-3 text-center text-xs text-slate-400">
+            CONSULIBROS &copy; Oposiciones de Educación Primaria - Elaborado por Carlos Garrido
+        </footer>
+    </div>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // Mapeo de IDs de Google Drive
+        const driveIds = {
+            1: {
+                medio: "1usn_iqaeiKIQ3RPaTfQPdFtBW5pXB_J3",
+                lengua: "1NLKWE1KMLAi-EHA-9Qw1e91PpJdrUPBo",
+                mates: "1qXvzBBPkSiOtrIcm9tFPbFI_W3NgUnLb"
+            },
+            2: {
+                medio: "1TsqK_ZZeN91WVIqXZ1DMTuctwsS5H7oj",
+                lengua: "1Er3Xr38LHir8qV7EZpN-NXeIIYSzYauj",
+                mates: "1Eppcn0C5zRoaqRSNcuNDzxaz_yWwhHPw"
+            },
+            3: {
+                medio: "1UlVq5tK5OG4L-yN4lXR7s-idGK12TXVl",
+                lengua: "1MriPczAeA3yXm7jdAQOTl5Lb6-3-7SNz",
+                mates: "1oNKRx2--JSZZ90XpTZX7-Kel2x9Pkv0k"
+            },
+            4: {
+                medio: "1ihZ5xAbvkjz9yKmxYiGyhDubz1ZqKhzT",
+                lengua: "1vXvdiCkUHfXW7qpHJY_ILknYVmcO9I7p",
+                mates: "1_2E8orAfmxkn-8ns75bukIZsJaU518-Y"
+            },
+            5: {
+                medio: "1qEYVcr49MwsNm4-fD4jkxZFO-5YW-l6k",
+                lengua: "1t2vq3F1eKt2Efb7UEHh1W3AS8ajKgLas",
+                mates: "1kQYasyEjb08EPPtZwsbaKDkCnCde8-dF"
+            },
+            6: {
+                medio: "1d1OsXjUPuzHmgbGwsH1tacaGJ6Py50-0",
+                lengua: "13vkxxMOxmenSNg_RaWopQTbftniJCrfn",
+                mates: "1Rq37TmBDxyw6pxugJxr5pB2VskSiAOtM"
+            }
+        };
+
+        const nombresAsignaturas = {
+            medio: "Conocimiento del Medio",
+            lengua: "Lengua Castellana",
+            mates: "Matemáticas"
+        };
+
+        let cursoActual = 1;
+        let asignaturaActual = 'medio';
+
+        function comenzarAplicacion() {
+            document.getElementById('pantalla-inicial').classList.add('hidden');
+            const app = document.getElementById('pantalla-aplicacion');
+            app.classList.remove('hidden');
+            app.classList.add('flex');
+            actualizarVista();
+        }
+
+        function volverAInicio() {
+            const app = document.getElementById('pantalla-aplicacion');
+            app.classList.add('hidden');
+            app.classList.remove('flex');
+            document.getElementById('pantalla-inicial').classList.remove('hidden');
+        }
+
+        function seleccionarCurso(curso) {
+            cursoActual = curso;
+            actualizarVista();
+        }
+
+        function seleccionarAsignatura(asig) {
+            asignaturaActual = asig;
+            actualizarVista();
+        }
+
+        function actualizarVista() {
+            // Actualizar estado visual de los botones de curso
+            for (let i = 1; i <= 6; i++) {
+                const btn = document.getElementById(`btn-curso-${i}`);
+                if (i === cursoActual) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            }
+
+            // Actualizar estado visual de los botones de asignatura
+            const btnMedio = document.getElementById('btn-medio');
+            const btnLengua = document.getElementById('btn-lengua');
+            const btnMates = document.getElementById('btn-mates');
+
+            btnMedio.className = "btn-subject py-2 px-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border-2 border-emerald-200 hover:bg-emerald-50 flex items-center justify-center gap-2";
+            btnLengua.className = "btn-subject py-2 px-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border-2 border-amber-200 hover:bg-amber-50 flex items-center justify-center gap-2";
+            btnMates.className = "btn-subject py-2 px-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-50 text-slate-700 border-2 border-rose-200 hover:bg-rose-50 flex items-center justify-center gap-2";
+
+            if (asignaturaActual === 'medio') btnMedio.classList.add('active-medio');
+            if (asignaturaActual === 'lengua') btnLengua.classList.add('active-lengua');
+            if (asignaturaActual === 'mates') btnMates.classList.add('active-mates');
+
+            const idDoc = driveIds[cursoActual][asignaturaActual];
+            const tituloDoc = `${nombresAsignaturas[asignaturaActual]} ${cursoActual}º (${cursoActual}º de Educación Primaria)`;
+
+            document.getElementById('titulo-libro').textContent = tituloDoc;
+            
+            // Carga directa en la aplicación usando la URL embed oficial /preview
+            const urlIncrustada = `https://drive.google.com/file/d/${idDoc}/preview`;
+            const urlCompleta = `https://drive.google.com/file/d/${idDoc}/view`;
+
+            document.getElementById('visor-pdf').src = urlIncrustada;
+            document.getElementById('btn-abrir-nueva-pestana').href = urlCompleta;
+        }
+    </script>
+</body>
+</html>
